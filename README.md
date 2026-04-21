@@ -1,6 +1,6 @@
 # Scalor
 
-**Empirical Big-O Complexity Analyzer.** Paste a function, get AI-derived time + space complexity plus an empirical runtime curve at scale.
+**Big-O Complexity Analyzer.** Paste a function, get AI-derived time + space complexity with reasoning. Empirical runtime curves against the theoretical prediction are coming in v2 (sandboxed execution — see SPEC).
 
 ## Stack
 
