@@ -17,21 +17,49 @@
 
 ## Quickstart
 
-```bash
-# backend
-cd backend
-python -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-cp ../.env.example .env                              # set ANTHROPIC_API_KEY
-uvicorn app.main:app --reload --port 8000
+### Backend (FastAPI on :8000)
 
-# frontend (new terminal)
+```bash
+cd backend
+python -m venv .venv
+# macOS/Linux:
+source .venv/bin/activate
+# Windows PowerShell:
+.venv\Scripts\Activate.ps1
+# Windows cmd:
+.venv\Scripts\activate.bat
+
+pip install -r requirements.txt
+cp ../.env.example .env   # Windows: copy ..\.env.example .env
+# Edit .env — leave ANTHROPIC_API_KEY empty (or set to 'mock') to demo offline.
+
+uvicorn app.main:app --reload --port 8000
+```
+
+Health check: `curl http://localhost:8000/health`.
+
+### Frontend (Next.js on :3000)
+
+```bash
 cd web
 pnpm install
 pnpm dev
 ```
 
-Open http://localhost:3000.
+Then open http://localhost:3000.
+
+### Mock mode
+
+If `ANTHROPIC_API_KEY` is missing, empty, equals `mock`, or equals the
+placeholder `sk-ant-...` from `.env.example`, `/analyze` returns a canned
+`O(n log n)` verdict and the UI shows a "Mock mode" banner. Set a real key
+in `backend/.env` to enable live Claude analysis.
+
+### Production build check
+
+```bash
+cd web && pnpm build
+```
 
 ## License
 
